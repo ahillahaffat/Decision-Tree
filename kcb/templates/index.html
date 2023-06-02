@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Program Klasifikasi Kelas</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='/css/form.css') }}"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h4>Selamat datang di Program Klasifikasi Kelas!</h4>
+      <form action="{{ url_for('submit') }}" method="POST">
+        <label for="id_siswa">ID Siswa:</label>
+        <input type="number" id="id_siswa" name="id_siswa" required />
+
+        <label for="nama_siswa">Nama Siswa:</label>
+        <input type="text" id="nama_siswa" name="nama_siswa" required />
+
+        <label for="jumlah_sesi">Jumlah Sesi:</label>
+        <input type="number" id="jumlah_sesi" name="jumlah_sesi" required />
+
+        <label for="nilai_rata_rata">Nilai Rata-rata:</label>
+        <input
+          type="number"
+          id="nilai_rata_rata"
+          name="nilai_rata_rata"
+          step="0.01"
+          required
+        />
+
+        <input type="submit" value="Submit" />
+      </form>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hasil Klasifikasi Kelas</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='/css/form.css') }}"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h4>Data Peserta Didik:</h4>
+      <p>ID Siswa: {{ data_siswa.id_siswa }}</p>
+      <p>Nama Siswa: {{ data_siswa.nama_siswa }}</p>
+      <p>Jumlah Sesi: {{ data_siswa.jumlah_sesi }}</p>
+      <p>Nilai Rata-rata: {{ data_siswa.nilai_rata_rata }}</p>
+      <p>Kelas yang Anda masuki adalah: {{ data_siswa.kelas }}</p>
+
+      {% if data_siswa.kelas == 'D' %}
+      <p>Anda perlu meningkatkan nilai Anda.</p>
+      {% elif data_siswa.kelas == 'A' %}
+      <p>Selamat! Anda memiliki prestasi yang sangat baik.</p>
+      {% elif data_siswa.kelas == 'B' %}
+      <p>Anda berada di kelas menengah.</p>
+      {% elif data_siswa.kelas == 'C' %}
+      <p>Anda berada di kelas yang cukup baik.</p>
+      {% endif %}
+    </div>
+  </body>
+</html>
