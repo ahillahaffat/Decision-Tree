@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Result</title>
+   
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/css/result.css') }}"> 
+</head>
+<body>
+  <div class="container">
+    <div class="form-container">
+    <h1>Result</h1>
+
+    <h2 class="form-heading">Data Siswa</h2>
+    <table>
+        <tr>
+            <th>ID Siswa</th>
+            <th>Nama Siswa</th>
+            <th>Jumlah Sesi</th>
+            <th>Nilai Rata-Rata</th>
+            <th>Kelas</th>
+        </tr>
+        <tr>
+            <td>{{ data_siswa.id_siswa }}</td>
+            <td>{{ data_siswa.nama_siswa }}</td>
+            <td>{{ data_siswa.jumlah_sesi }}</td>
+            <td>{{ data_siswa.nilai_rata_rata }}</td>
+            <td>{{ data_siswa.kelas }}</td>
+        </tr>
+    </table>
+
+    <h2 class="form-heading">Confusion Matrix</h2>
+    <table>
+        <tr>
+            <th>Prediksi</th>
+            <th>True</th>
+            <th>Count</th>
+        </tr>
+        {% for row in confusion_matrix_data %}
+        <tr>
+            <td>{{ row[0] }}</td>
+            <td>{{ row[1] }}</td>
+            <td>{{ row[2] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2 class="form-heading">Class Percentages</h2>
+    <table>
+        <tr>
+            <th>Kelas</th>
+            <th>Percentage</th>
+        </tr>
+        {% for label in labels %}
+        <tr>
+            <td>{{ label }}</td>
+            <td>{{ class_percentages[label] }}%</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <a href="{{ url_for('index') }}" class="button">Back</a>
+    <a href="{{ url_for('show_table') }}" class="button">Show Table</a>
+</body>
+</html>

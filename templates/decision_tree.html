@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Show Table</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        /* Hover Effect */
+        tr:hover {
+            background-color: #ebebeb;
+        }
+
+        /* Scale Out Animation */
+        @keyframes scaleOut {
+            0% {
+                transform: scale(1);
+            }
+            100% {
+                transform: scale(0.95);
+            }
+        }
+
+        /* Apply Scale Out Animation on Click */
+        table.clicked {
+            animation: scaleOut 0.3s ease-in-out;
+            animation-fill-mode: forwards;
+        }
+    </style>
+</head>
+<body>
+    <h1>Data Siswa</h1>
+    <table class="clickable-table">
+        <tr>
+            <th>ID Siswa</th>
+            <th>Nama Siswa</th>
+            <th>Jumlah Sesi</th>
+            <th>Nilai Rata-Rata</th>
+            <th>Kelas</th>
+        </tr>
+        {% for siswa in data_siswa %}
+        <tr>
+            <td>{{ siswa[0] }}</td>
+            <td>{{ siswa[1] }}</td>
+            <td>{{ siswa[2] }}</td>
+            <td>{{ siswa[3] }}</td>
+            <td>{{ siswa[4] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <h2>Jumlah Siswa per Kelas:</h2>
+    <table>
+        <tr>
+            <th>Kelas</th>
+            <th>Jumlah Siswa</th>
+        </tr>
+        {% for kelas, total_siswa in total_kelas.items() %}
+        <tr>
+            <td>{{ kelas }}</td>
+            <td>{{ total_siswa }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <script>
+        // Add Click Event Listener to Table
+        var tables = document.getElementsByClassName("clickable-table");
+        for (var i = 0; i < tables.length; i++) {
+            tables[i].addEventListener("click", function () {
+                this.classList.add("clicked");
+            });
+        }
+    </script>
+</body>
+</html>

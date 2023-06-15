@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Confusion Matrix and Class Percentages</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='/css/form.css') }}"
+    />
+  </head>
+<body>
+    <h2>Confusion Matrix</h2>
+    <table>
+        <tr>
+            <th></th>
+            {% for label in labels %}
+            <th>{{ label }}</th>
+            {% endfor %}
+        </tr>
+        {% for i in range(len(labels)) %}
+        <tr>
+            <th>{{ labels[i] }}</th>
+            {% for j in range(len(labels)) %}
+            <td>{{ confusion_matrix[i, j] }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+    
+    <h2>Persentase Kelas</h2>
+    <table>
+        <tr>
+            <th>Kelas</th>
+            <th>Persentase</th>
+        </tr>
+        {% for class_label, class_count in class_counts.items() %}
+        <tr>
+            <td>{{ class_label }}</td>
+            <td>
+                {% if total_data > 0 %}
+                {{ class_count / total_data * 100 }}%
+                {% else %}
+                0%
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

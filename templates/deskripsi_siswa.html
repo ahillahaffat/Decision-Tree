@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hasil Prediksi</title>
+    <link
+    rel="stylesheet"
+    type="text/css"
+    href="{{ url_for('static', filename='/css/form.css') }}"
+  />
+</head>
+<body>
+    <h1>Hasil Prediksi</h1>
+    <h3>Data Siswa:</h3>
+    <p>ID Siswa: {{ data_siswa.id_siswa }}</p>
+    <p>Nama Siswa: {{ data_siswa.nama_siswa }}</p>
+    <p>Jumlah Sesi: {{ data_siswa.jumlah_sesi }}</p>
+    <p>Nilai Rata-rata: {{ data_siswa.nilai_rata_rata }}</p>
+    <p>Kelas: {{ data_siswa.kelas }}</p>
+
+    {% if data_siswa.kelas == 'Kelas A' %}
+        <h2>Keterangan: Lanjut ke kelas selanjutnya</h2>
+    {% elif data_siswa.kelas == 'Kelas C' %}
+        <h2>Keterangan: Mengulang kelas</h2>
+    {% elif data_siswa.kelas == 'Kelas D' %}
+        <h2>Keterangan: Tidak lulus</h2>
+    {% endif %}
+</body>
+</html>
